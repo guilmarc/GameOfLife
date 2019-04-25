@@ -8,13 +8,21 @@
             background-color: beige;
             padding: 0;
             margin: 0;
+            width: 500px;
+            height: 500px;
         }
+        tr {
+            margin: 10px;
+            padding: 10px;
+            border: blue solid 1px;
+        }
+
         td {
             margin: 0;
             padding: 0;
             min-width: 10px;
             min-height: 10px;
-            border: black solid 2px;
+            border: black solid 1px;
         }
     </style>
 </head>
@@ -22,7 +30,7 @@
 
 <p>
 
-    <table id="grid" width="500" height="500">
+    <table id="grid">
 
     </table>
 
@@ -30,6 +38,9 @@
 
 <script>
 
+    const GRID_SIZE = 25;
+
+    var matrix = [GRID_SIZE][GRID_SIZE];
     var grid = document.getElementById("grid");
 
 
@@ -37,18 +48,32 @@
 
         var html = "";
 
-        for(var i = 0; i < 10; i++) {
+        for(var i = 0; i < GRID_SIZE; i++) {
             html += "<tr>";
 
-            for(var j = 0; j < 10; j++) {
-                html += "<td></td>";
+            for(var j = 0; j < GRID_SIZE; j++) {
+                var cellId = "x" + j + "y" + i;
+                html += "<td id=\'cell\'></td>";
+                newCell = document.getElementById("cell");
+                newCell.id = cellId;
+                newCell.addEventListener('click', function(){
+
+
+                });
             }
+
+            new Element()
 
             html += "</tr>";
         }
 
         document.getElementById("grid").innerHTML = html;
     }
+
+    function handleClick(){
+
+    }
+
 
     drawGrid();
 
