@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GameOfLife</title>
+    <style>
+        table{
+            background-color: beige;
+            padding: 0;
+            margin: 0;
+        }
+        td {
+            margin: 0;
+            padding: 0;
+            min-width: 10px;
+            min-height: 10px;
+            border: black solid 2px;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+
+    <table id="grid" width="500" height="500">
+
+    </table>
+
+</p>
+
+<script>
+
+    var grid = document.getElementById("grid");
+
+
+    function drawGrid() {
+
+        var html = "";
+
+        for(var i = 0; i < 10; i++) {
+            html += "<tr>";
+
+            for(var j = 0; j < 10; j++) {
+                html += "<td></td>";
+            }
+
+            html += "</tr>";
+        }
+
+        document.getElementById("grid").innerHTML = html;
+    }
+
+    drawGrid();
+
+
+
+</script>
+
+</body>
+</html>
