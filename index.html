@@ -74,6 +74,8 @@
         //var x = parseInt(sender.id.split(";")[0]);
         //var y = parseInt(sender.id.split(";")[1]);
 
+        console.log(x + " " + y);
+
         if(matrix[x][y] === 1){
             sender.style.background = "";
             matrix[x][y] = 0;
@@ -81,6 +83,8 @@
             sender.style.background = "#000000";
             matrix[x][y] = 1;
         }
+
+        console.log( countNeighbors(matrix, x, y) )
     }
 
 
@@ -88,6 +92,29 @@
 
     function run(){
         mirror = matrix.slice();
+
+        for(var y = 0; y < GRID_SIZE; y++) {
+            for (var x = 0; x < GRID_SIZE; x++) {
+                var neighborsCount = countNeighbors( matrix );
+            }
+        }
+    }
+
+    function countNeighbors(myArray, i, j) {
+        var rowLimit = myArray.length-1;
+        var columnLimit = myArray[0].length-1;
+
+        var count = 0;
+
+        for(var y = Math.max(0, i-1); y <= Math.min(i+1, rowLimit); y++) {
+            for(var x = Math.max(0, j-1); x <= Math.min(j+1, columnLimit); x++) {
+                if(x !== j || y !== i) {
+                    if( matrix[y][x] === 1 ) count++;
+                    //console.log(myArray[x][y]);
+                }
+            }
+        }
+        return count;
     }
 
 
