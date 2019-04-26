@@ -40,13 +40,13 @@
 
 <script>
 
-    function byId(e){return document.getElementById(e);}
-    function newElement(tag){return document.createElement(tag);}
+    //function byId(e){return document.getElementById(e);}
+    //function newElement(tag){return document.createElement(tag);}
 
     const GRID_SIZE = 25;
 
-    const matrix = Array(GRID_SIZE).fill(null).map(_ => Array(GRID_SIZE).fill(0));
-    var mirror = [GRID_SIZE][GRID_SIZE];
+    var matrix = Array(GRID_SIZE).fill(null).map(_ => Array(GRID_SIZE).fill(0));
+    var mirror = Array(GRID_SIZE).fill(null).map(_ => Array(GRID_SIZE).fill(0));;
 
     var grid = document.getElementById("grid");
 
@@ -60,7 +60,7 @@
 
             for(var x = 0; x < GRID_SIZE; x++) {
                 var cellId = x + ";" + y;
-                html += "<td id=" + '\'' + cellId + '\'' + " onclick=handleClick(this)></td>";
+                html += "<td id=" + '\'' + cellId + '\'' + " onclick=handleClick(this," + x + "," + y + ")></td>";
             }
 
             html += "</tr>";
@@ -69,10 +69,10 @@
         document.getElementById("grid").innerHTML = html;
     }
 
-    function handleClick(sender){
+    function handleClick(sender, x, y){
 
-        var x = parseInt(sender.id.split(";")[0]);
-        var y = parseInt(sender.id.split(";")[1]);
+        //var x = parseInt(sender.id.split(";")[0]);
+        //var y = parseInt(sender.id.split(";")[1]);
 
         if(matrix[x][y] === 1){
             sender.style.background = "";
@@ -81,14 +81,13 @@
             sender.style.background = "#000000";
             matrix[x][y] = 1;
         }
-        console.log(sender.style.background);
     }
 
 
     drawGrid();
 
     function run(){
-
+        mirror = matrix.slice();
     }
 
 
