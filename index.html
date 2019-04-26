@@ -33,7 +33,9 @@
     <table id="grid">
 
     </table>
-
+    <button id="launchButton" onclick=run()>
+        Launch Game Of Life
+    </button>
 </p>
 
 <script>
@@ -43,7 +45,7 @@
 
     const GRID_SIZE = 25;
 
-    var matrix = [GRID_SIZE][GRID_SIZE];
+    const matrix = Array(GRID_SIZE).fill(null).map(_ => Array(GRID_SIZE).fill(0));
     var mirror = [GRID_SIZE][GRID_SIZE];
 
     var grid = document.getElementById("grid");
@@ -68,12 +70,26 @@
     }
 
     function handleClick(sender){
-        alert(sender.id);
+
+        var x = parseInt(sender.id.split(";")[0]);
+        var y = parseInt(sender.id.split(";")[1]);
+
+        if(matrix[x][y] === 1){
+            sender.style.background = "";
+            matrix[x][y] = 0;
+        } else {
+            sender.style.background = "#000000";
+            matrix[x][y] = 1;
+        }
+        console.log(sender.style.background);
     }
 
 
     drawGrid();
 
+    function run(){
+
+    }
 
 
 </script>
