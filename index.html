@@ -38,6 +38,9 @@
 
 <script>
 
+    function byId(e){return document.getElementById(e);}
+    function newElement(tag){return document.createElement(tag);}
+
     const GRID_SIZE = 25;
 
     var matrix = [GRID_SIZE][GRID_SIZE];
@@ -50,12 +53,12 @@
 
         var html = "";
 
-        for(var i = 0; i < GRID_SIZE; i++) {
+        for(var y = 0; y < GRID_SIZE; y++) {
             html += "<tr>";
 
-            for(var j = 0; j < GRID_SIZE; j++) {
-                var cellId = "x" + j + "y" + i;
-                html += "<td id=cellId onclick=handleClick(this)></td>";
+            for(var x = 0; x < GRID_SIZE; x++) {
+                var cellId = x + ";" + y;
+                html += "<td id=" + '\'' + cellId + '\'' + " onclick=handleClick(this)></td>";
             }
 
             html += "</tr>";
