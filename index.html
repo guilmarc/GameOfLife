@@ -51,7 +51,7 @@
     var grid = document.getElementById("grid");
 
 
-    function drawGrid() {
+    function createGrid() {
 
         var html = "";
 
@@ -88,9 +88,15 @@
     }
 
 
-    drawGrid();
+
+    createGrid();
+
 
     function run(){
+        setInterval(runTick, 1000);
+    }
+
+    function runTick(){
         mirror = matrix.slice();
 
         for(var y = 0; y < GRID_SIZE; y++) {
@@ -102,13 +108,33 @@
                 var neighborsCount = countNeighbors( matrix );
 
                 if(matrix[x][y] === 1) {
-
-
-
+                    if( neighborsCount < 2 || neighborsCount > 3 ) {
+                        matrix[x][y] = 0
+                    }
                 } else {
                     if( neighborsCount === 3 ){
                         matrix[x][y] = 1
                     }
+                }
+            }
+        }
+
+        matrix = mirror.slice();
+
+        drawGrid()
+    }
+
+    function drawGrid() {
+
+        for(var y = 0; y < GRID_SIZE; y++) {
+
+            for(var x = 0; x < GRID_SIZE; x++) {
+                var cell = document.getElementById(x + ";" + y);
+
+                if(matrix[x][y] === 1){
+                    cell.style.background = "#000000";
+                } else {
+                    cell.style.background = "";
                 }
             }
         }
